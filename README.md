@@ -4,6 +4,8 @@
 - 오탈자 및 가독성이 안좋거나 수정이 필요한 내용은 `Pull Request`, `Issue` 등 자유롭게 남겨주시면 검토 후에 반영하겠습니다. 많관부 🙇‍♂️
 - react-query의 자세한 활용법은 [공식 사이트](https://react-query-v3.tanstack.com/overview)를 참고해주시길 바랍니다.
 
+<br />
+
 ## 🌟 Contributors
 
 [![contributors](https://contrib.rocks/image?repo=ssi02014/react-query-tutorial)](https://github.com/ssi02014/react-query-tutorial/graphs/contributors)
