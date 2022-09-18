@@ -2,7 +2,7 @@
 
 - 해당 저장소는 `react-query`에서 자주 사용하는 개념들을 정리한 저장소입니다. react-query의 모든 활용 방법이 작성된 상태는 아니며, 추가가 필요한 내용은 추가, 보완할 예정입니다.
 - 오탈자 및 가독성이 안좋거나 수정이 필요한 내용은 `Pull Request`, `Issue` 등 자유롭게 남겨주시면 검토 후에 반영하겠습니다. 많관부 🙇‍♂️
-- react-query의 자세한 활용법은 [공식 사이트](https://react-query-v3.tanstack.com/overview)를 참고해주시길 바랍니다.
+- react-query의 자세한 활용법은 [react-query v3 공식 사이트](https://react-query-v3.tanstack.com/overview)를 참고해주시길 바랍니다.
 
 <br />
 
@@ -16,43 +16,42 @@
 
 ![스크린샷 2022-08-17 오후 2 20 01](https://user-images.githubusercontent.com/64779472/185040681-2352e8c8-b2d7-40f7-893d-3ee2270904c9.png)
 
-- react-query v4가 정식 릴리즈되면서 주요 변경 사항을 아래 문서에 추가하고 있습니다.
-- [react-query v3 vs v4 비교](https://github.com/ssi02014/react-query-tutorial/tree/master/document/v4.md)
-
-<br />
-
-- [react-query v4 tanstack 공식 문서](https://tanstack.com/)
-- [react-query v4 migration 공식 문서](https://tanstack.com/query/v4/docs/guides/migrating-to-react-query-4)
+- react-query `v4`가 정식 릴리즈되면서 주요 변경 사항을 [해당 문서](https://github.com/ssi02014/react-query-tutorial/tree/master/document/v4.md)에 추가하고 있습니다.
+- 참고로, 목차에 정리되어 내용들은 `v3`를 기반으로 작성되어 있습니다. 그러나 v4랑 비교했을 때 크게 차이는 없습니다. 차이가 있는 부분은 아래 비교 문서를 확인해주시고, 추가적인 수정이 필요한 부분은 `Pull Request`, `Issue` 추가 부탁드립니다.
+  - [react-query v3 vs v4 비교](https://github.com/ssi02014/react-query-tutorial/tree/master/document/v4.md)
+  - [react-query v4 tanstack 공식 문서](https://tanstack.com/)
+  - [react-query v4 migration 공식 문서](https://tanstack.com/query/v4/docs/guides/migrating-to-react-query-4)
 
 <br />
 
 ## 📃 목차
 
-1. [React-Query 기능](#기능)
-2. [기본 설정(QueryClientProvider, QueryClient)](#react-query-기본-설정)
-3. [React Query Devtools](#devtools)
-4. [React Query 캐싱 라이프 사이클](#캐싱-라이프-사이클)
-5. [useQuery](#usequery)
-6. [useQuery 주요 리턴 데이터](#usequery-주요-리턴-데이터)
-7. [staleTime과 cacheTime](#staletime-cachetime)
-8. [마운트 될 때마다 재요청하는 refetchOnMount](#refetchonmount)
-9. [윈도우 포커싱 될 때 재 요청하는 refetchOnWindowFocus](#refetchOnWindowFocus)
-10. [Polling 방식을 구현하기 위한 refetchInterval와 refetchIntervalInBackground)](#polling)
-11. [자동 실행의 enabled와 수동으로 쿼리를 다시 요청하는 refetch](#enabled-refetch)
-12. [실패 쿼리에 대한 재 요청하는 retry](#retry)
-13. [onSuccess, onError, onSettled Callback](#onsuccess-onerror-onsettled)
-14. [select를 이용한 데이터 변환](#select)
-15. [Paginated 구현에 유용한 keepPreviousData](#keeppreviousdata)
-16. [쿼리를 병렬(Parallel) 요청할 수 있는 useQueries](#parallel)
-17. [종속 쿼리(Dependent Queries)](#dependent-queries)
-18. [QueryClient 인스턴스를 반환하는 useQueryClient](#usequeryclient)
-19. [초기 데이터 설정할 수 있는 initialData](#initial-query-data)
-20. [Infinite Queries](#infinite-queries)
-21. [서버와 Http CUD관련 작업을 위한 useMutation과 mutate](#usemutation-mutate)
-22. [쿼리 무효화 queryClient.invalidateQueries](#쿼리-무효화)
-23. [캐시 데이터 즉시 업데이트를 위한 queryClient.setQueryData](#쿼리-무효화)
-24. [사용자 경험(UX) 올려주는 Optimistic Updates(낙관적 업데이트)](#optimistic-update)
-25. [에러 처리 useQueryErrorResetBoundary](#usequeryerrorresetboundary)
+1. [react-query 설치](#설치)
+2. [React-Query 기능](#기능)
+3. [기본 설정(QueryClientProvider, QueryClient)](#react-query-기본-설정)
+4. [React Query Devtools](#devtools)
+5. [React Query 캐싱 라이프 사이클](#캐싱-라이프-사이클)
+6. [useQuery](#usequery)
+7. [useQuery 주요 리턴 데이터](#usequery-주요-리턴-데이터)
+8. [staleTime과 cacheTime](#staletime-cachetime)
+9. [마운트 될 때마다 재요청하는 refetchOnMount](#refetchonmount)
+10. [윈도우 포커싱 될 때 재 요청하는 refetchOnWindowFocus](#refetchOnWindowFocus)
+11. [Polling 방식을 구현하기 위한 refetchInterval와 refetchIntervalInBackground)](#polling)
+12. [자동 실행의 enabled와 수동으로 쿼리를 다시 요청하는 refetch](#enabled-refetch)
+13. [실패 쿼리에 대한 재 요청하는 retry](#retry)
+14. [onSuccess, onError, onSettled Callback](#onsuccess-onerror-onsettled)
+15. [select를 이용한 데이터 변환](#select)
+16. [Paginated 구현에 유용한 keepPreviousData](#keeppreviousdata)
+17. [쿼리를 병렬(Parallel) 요청할 수 있는 useQueries](#parallel)
+18. [종속 쿼리(Dependent Queries)](#dependent-queries)
+19. [QueryClient 인스턴스를 반환하는 useQueryClient](#usequeryclient)
+20. [초기 데이터 설정할 수 있는 initialData](#initial-query-data)
+21. [Infinite Queries](#infinite-queries)
+22. [서버와 Http CUD관련 작업을 위한 useMutation과 mutate](#usemutation-mutate)
+23. [쿼리 무효화 queryClient.invalidateQueries](#쿼리-무효화)
+24. [캐시 데이터 즉시 업데이트를 위한 queryClient.setQueryData](#쿼리-무효화)
+25. [사용자 경험(UX) 올려주는 Optimistic Updates(낙관적 업데이트)](#optimistic-update)
+26. [에러 처리 useQueryErrorResetBoundary](#usequeryerrorresetboundary)
 
 <br />
 <br />
@@ -83,6 +82,15 @@
 
 4. 적은 코드. 더 적은 엣지 케이스.
    - `리듀서`, `캐싱 로직`, `타이머`, `재사용 로직`, `복잡한 비동기/대기 스크립팅`을 평소 하던 코드보다 적은 양의 코드로 작성할 수 있다.
+
+<br />
+
+## 설치
+
+```
+npm i react-query
+yarn add react-query
+```
 
 <br />
 
