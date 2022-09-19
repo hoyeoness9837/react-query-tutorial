@@ -393,19 +393,31 @@ const { isLoading, isFetching, data, isError, error } = useQuery(
 ### Polling
 
 ```jsx
+// only refetchInterval
 const { isLoading, isFetching, data, isError, error } = useQuery(
   "super-heroes",
   getSuperHero,
   {
-    // refetchInterval: 2000,
+    refetchInterval: 2000,
+  }
+);
+```
+
+```jsx
+// refetchInterval + refetchIntervalInBackground
+const { isLoading, isFetching, data, isError, error } = useQuery(
+  "super-heroes",
+  getSuperHero,
+  {
+    refetchInterval: 2000,
     refetchIntervalInBackground: true,
   }
 );
 ```
 
-- 폴링이란? 리얼타임 웹을 위한 기법으로 `일정한 주기(특정한 시간)`를 가지고 서버와 응답을 주고받는 방식이 폴링 방식이다.
-- react-query에서는 `refetchInterval`을 이용해서 구현할 수 있다.
-- `refetchIntervalInBackground` 으로도 폴링을 구현할 수 있는데 `refetchInterval` 탭/창이 백그라운드에 있는 동안 계속 다시 가져옵니다.
+- `폴링`이란? 리얼타임 웹을 위한 기법으로 `일정한 주기(특정한 시간)`를 가지고 서버와 응답을 주고받는 방식이 폴링 방식이다.
+- react-query에서는 `refetchInterval`을 이용해서 구현할 수 있는데, 원하는 폴링 시간을 값으로 넣어주면 해당 `시간(밀리초)`마다 폴링을 진행한다.
+- 또한, `refetchIntervalInBackground` 옵션을 `true`로주면, 브라우저에 `focus`되어 있지 않아도(즉 탭/창이 백그라운드에 있는 동안에도) 폴링을 진행한다. 만약 수시로 데이터가 변경된다면 좋은 `UX`를 제공한다.
 
 <br />
 
